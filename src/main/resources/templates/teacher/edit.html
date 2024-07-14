@@ -1,0 +1,45 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <h1>Editar docente</h1>
+    <form th:action="@{/teachers/save}" th:object="${teacher}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Escriba el nombre del grupo" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Apellido</label>
+                    <input type="text" class="form-control" th:field="*{lastName}" id="lastName" placeholder="Escriba el apellido del docente" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="Escriba el email del docente" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="text" class="form-control" th:field="*{phone}" id="phone" placeholder="Escriba el teléfono del docente" required>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button> |
+        <a th:href="@{/teachers}">Regresar</a>
+    </form>
+</div>
