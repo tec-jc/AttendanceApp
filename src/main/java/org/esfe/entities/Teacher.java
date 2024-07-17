@@ -4,21 +4,44 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "teachers")
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotBlank(message = "El nombre es requerido")
     private String name;
+
     @NotBlank(message = "El apellido es requerido")
     private String lastName;
+
     @NotBlank(message = "El email es requerido")
     @Email(message = "La entrada no corresponde a un email válido")
     private String email;
+
     @NotBlank(message = "El teléfono es requerido")
     private String phone;
+
+    @ManyToMany
+    @JoinTable(
+            name = "teacher_groups",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private Set<Group> groups = new HashSet<>();
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
 
     public Integer getId() {
         return id;

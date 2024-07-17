@@ -1,12 +1,12 @@
 package org.esfe.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "grupos")
 public class Group {
@@ -16,8 +16,18 @@ public class Group {
     @NotBlank(message = "El nombre es requerido")
     private String name;
     @NotBlank(message = "La descripción es requerida")
-    @Size(max = 50, message = "Máximo 50 caracteres")
     private String description;
+
+    @ManyToMany(mappedBy = "groups")
+    private Set<Teacher> teachers = new HashSet<>();
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
+    }
 
     public Integer getId() {
         return id;

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class GroupService implements IGroupService {
     @Override
     public Page<Group> findAll(Pageable pageable) {
         return groupRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Group> getAll() {
+        return groupRepository.findAll();
     }
 
     @Override

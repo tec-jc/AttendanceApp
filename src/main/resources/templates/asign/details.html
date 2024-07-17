@@ -1,0 +1,29 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <h1>Detalles de la asignación</h1>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2" >ID</dt>
+            <dd class = "col-sm-10" th:text="${teacherGroup.id}"></dd>
+
+            <dt class = "col-sm-2">Docente</dt>
+            <dd class = "col-sm-10" th:text="|${teacherGroup.teacher.name} ${teacherGroup.teacher.lastName}|"></dd>
+
+            <dt class = "col-sm-2">Grupo</dt>
+            <dd class = "col-sm-10" th:text="${teacherGroup.group.name}"></dd>
+
+            <dt class = "col-sm-2">Año</dt>
+            <dd class = "col-sm-10" th:text="${teacherGroup.year}"></dd>
+
+            <dt class = "col-sm-2">Ciclo</dt>
+            <dd class = "col-sm-10" th:text="${teacherGroup.semester}"></dd>
+        </dl>
+
+        <a th:href="@{/asigns/edit/{id} (id = ${teacherGroup.id}) }" class="btn btn-outline-info">Editar</a> |
+        <a th:href="@{/asigns}">Regresar</a>
+    </div>
+</div>
